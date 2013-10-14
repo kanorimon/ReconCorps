@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignLeft="@+id/text_lat"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/button_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_image"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="24dp"
+        android:text="設定" />
+
+    <TextView
+        android:id="@+id/text_provider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/button_loc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/text_lat"
+        android:layout_alignBottom="@+id/text_lat"
+        android:layout_alignParentRight="true"
+        android:text="位置取得" />
+
+    <Button
+        android:id="@+id/button_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="103dp"
+        android:text="画像選択" />
+
+    <TextView
+        android:id="@+id/text_lat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/text_provider"
+        android:layout_marginTop="38dp"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/text_long"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button_loc"
+        android:layout_marginTop="15dp"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/text_dist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_setting"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="50dp"
+        android:text="@string/hello_world" />
+
+</RelativeLayout>

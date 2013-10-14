@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ReconCorps</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="log">ReconCorpsLog</string>
+    <string name="char_pref">char_pref</string>
+    <string name="char_default">first</string>
+    <string name="char_list_summary">デフォルトサマリー</string>
+    <string name="char_list_title">リストタイトル</string>
+    <string name="char_list_dialog">リストタイトルダイアログ</string>
+    <string name="gallery_access_title">ギャラリータイトル</string>
+    <string name="gallery_access_message">ギャラリーメッセージ</string>
+    
+</resources>
