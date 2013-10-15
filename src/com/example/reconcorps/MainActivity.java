@@ -124,7 +124,7 @@ public class MainActivity extends Activity {
     	Log.v(getString(R.string.log),pref.getString(PREF_IMAGE, "none"));
 
     	if(pref.getString(PREF_IMAGE, "none").equals("none")){
-    	    imgv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.levi));	
+    	    imgv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.def));	
     	}else{
     		try{
     			BufferedInputStream inputStream = new BufferedInputStream(getContentResolver().openInputStream(Uri.parse(pref.getString(PREF_IMAGE, null))));
@@ -224,17 +224,19 @@ public class MainActivity extends Activity {
 		        listener);
 
     }
-     
+    
 
     private final LocationListener listener = new LocationListener(){
 
         @Override
         public void onLocationChanged(Location location) {
             
+        	mLocationManager.removeUpdates(this);
+
+        	/*
         	Toast.makeText(getApplicationContext(), "報告しています",
                     Toast.LENGTH_LONG).show();
-        	
-        	mLocationManager.removeUpdates(this);
+        	*/
         	
         	//旧ポイントを抽出
         	Double old_lat =Double.parseDouble(pref.getString(PREF_LAT, "0"));

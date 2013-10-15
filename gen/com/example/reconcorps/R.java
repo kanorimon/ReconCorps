@@ -25,19 +25,35 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int levi=0x7f020001;
+        public static final int def=0x7f020000;
+        public static final int hekigai_0=0x7f020001;
+        public static final int hekigai_1=0x7f020002;
+        public static final int hekigai_2=0x7f020003;
+        public static final int hekigai_3=0x7f020004;
+        public static final int hekigai_4=0x7f020005;
+        public static final int hekigai_5=0x7f020006;
+        public static final int hekigai_6=0x7f020007;
+        public static final int hekigai_7=0x7f020008;
+        public static final int hekigai_8=0x7f020009;
+        public static final int hekigai_9=0x7f02000a;
+        public static final int hekigai_back=0x7f02000b;
+        public static final int hekigai_front=0x7f02000c;
+        public static final int ic_launcher=0x7f02000d;
+        public static final int levi=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0008;
-        public static final int button_image=0x7f0a0003;
-        public static final int button_loc=0x7f0a0005;
-        public static final int button_setting=0x7f0a0002;
+        public static final int action_settings=0x7f0a000b;
+        public static final int button_image=0x7f0a0002;
+        public static final int button_loc=0x7f0a0004;
+        public static final int button_setting=0x7f0a0001;
         public static final int imageView1=0x7f0a0000;
-        public static final int text_dist=0x7f0a0007;
-        public static final int text_lat=0x7f0a0001;
-        public static final int text_long=0x7f0a0006;
-        public static final int text_provider=0x7f0a0004;
+        public static final int image_hekigai_0=0x7f0a0008;
+        public static final int image_hekigai_1=0x7f0a0009;
+        public static final int image_hekigai_b=0x7f0a000a;
+        public static final int image_hekigai_f=0x7f0a0007;
+        public static final int text_dist=0x7f0a0005;
+        public static final int text_lat=0x7f0a0006;
+        public static final int text_long=0x7f0a0003;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
