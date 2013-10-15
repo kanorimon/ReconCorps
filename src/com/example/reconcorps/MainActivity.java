@@ -19,9 +19,11 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -158,20 +160,57 @@ public class MainActivity extends Activity {
                 break;
 
             case R.id.button_loc:
-                getLocation();
+                //getLocation();
+            	Intent intent3 = new Intent( getApplicationContext(), ReportActivity.class );
+                startActivity( intent3 );
                 break;
                 
             case R.id.button_image:
+            	
+            	putImage();
+            	
+            	/*
             	// インテント設定
             	Intent intent2 = new Intent(Intent.ACTION_PICK);
             	// とりあえずストレージ内の全イメージ画像を対象
             	intent2.setType("image/*");
             	// ギャラリー表示
             	startActivityForResult(intent2, REQUEST_PICK_CONTACT);
+            	*/
             	break;
             }
         }
     };
+    
+    void putImage(){
+    	final String[] items = {"デフォルト", "自分で選ぶ"};
+    	
+    	new AlertDialog.Builder(MainActivity.this)
+    	.setTitle("データを選択してください")
+    	.setItems(items, new DialogInterface.OnClickListener() {
+    	    public void onClick(DialogInterface dialog, int item) {
+    	        switch (item) {
+    	        case 0:
+        			prefEditor = pref.edit();
+        			// savedCountを保存
+        			prefEditor.putString(PREF_IMAGE, "none");
+        			// 最後commit
+        			prefEditor.commit();
+        			imgv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.def));
+    	            break;
+    	        case 1:
+                	Intent intent2 = new Intent(Intent.ACTION_PICK);
+                	// とりあえずストレージ内の全イメージ画像を対象
+                	intent2.setType("image/*");
+                	// ギャラリー表示
+                	startActivityForResult(intent2, REQUEST_PICK_CONTACT);
+    	            break;
+    	        }
+    	    }
+    	})
+    	.show();	
+    }
+    
     
     /**
      * 標準ギャラリーから戻り時に呼ばれるイベント
