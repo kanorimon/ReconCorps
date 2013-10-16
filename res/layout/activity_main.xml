@@ -109,5 +109,14 @@
         </RelativeLayout>
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/button_achievements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button_image"
+        android:layout_alignBottom="@+id/button_image"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:text="実績" />
 
 </RelativeLayout>

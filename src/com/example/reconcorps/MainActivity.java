@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
 	//View部品
 	private View clickButtonImage;
 	private View clickGetLocation;
+	private View clickAchievements;
     private ImageView imgv;
 
     //設定ファイル関連
@@ -57,7 +58,11 @@ public class MainActivity extends Activity {
         clickGetLocation = findViewById(R.id.button_loc);
         clickGetLocation.setOnClickListener(oCLforShowButton);
         
-		Log.v(getString(R.string.log),"MainActivity　onCreate() end");
+      	//実績ボタン
+        clickAchievements = findViewById(R.id.button_achievements);
+        clickAchievements.setOnClickListener(oCLforShowButton);
+
+        Log.v(getString(R.string.log),"MainActivity　onCreate() end");
 
     }
     
@@ -136,6 +141,11 @@ public class MainActivity extends Activity {
                 startActivity(new Intent( getApplicationContext(), ReportActivity.class ));
                 break;
                 
+            //実績ページに遷移
+            case R.id.button_achievements:
+                startActivity(new Intent( getApplicationContext(), AchievementsActivity.class ));
+                break;
+
             //壁紙設定
             case R.id.button_image:
             	putImage();
