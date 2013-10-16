@@ -42,11 +42,10 @@ public final class R {
         public static final int levi=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a000d;
+        public static final int action_settings=0x7f0a000c;
         public static final int button_image=0x7f0a0002;
         public static final int button_loc=0x7f0a0004;
-        public static final int button_return=0x7f0a000c;
-        public static final int button_setting=0x7f0a0001;
+        public static final int button_return=0x7f0a0001;
         public static final int imageView1=0x7f0a0000;
         public static final int image_hekigai_0=0x7f0a0008;
         public static final int image_hekigai_1=0x7f0a0009;
@@ -58,8 +57,9 @@ public final class R {
         public static final int text_report=0x7f0a000b;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int activity_report=0x7f030001;
+        public static final int activity_achievements=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_report=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f090000;
