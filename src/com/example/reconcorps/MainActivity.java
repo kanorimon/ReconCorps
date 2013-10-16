@@ -1,119 +1,90 @@
 package com.example.reconcorps;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.provider.Settings;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.util.Log;
 
 public class MainActivity extends Activity {
 
-	//設定
-	private View clickSetting;
-	private View clickSetting2;
-	private View clickSetting3;
-    private ImageView imgv;
-    
+    //定数
     static final int REQUEST_PICK_CONTACT = 99;
     static final String PREF_IMAGE = "pref_image";
     static final String PREF_LAT = "pref_lat";
     static final String PREF_LONG = "pref_long";
     static final String PREF_DIST = "pref_dist";
-    
+
+	//View部品
+	private View clickButtonImage;
+	private View clickGetLocation;
+    private ImageView imgv;
+
+    //設定ファイル関連
     SharedPreferences pref;
     SharedPreferences.Editor prefEditor;
-	
-	// ロケーションマネージャー
-    LocationManager mLocationManager;
-
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-		Log.v(getString(R.string.log),"MainActivity　onCreate start");
+		Log.v(getString(R.string.log),"MainActivity　onCreate() start");
 
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //アクションバー非表示
         ActionBar actionBar = getActionBar();
 		actionBar.hide();
         
-      	//設定ボタンイベント
-        clickSetting = findViewById(R.id.button_setting);
-        clickSetting.setOnClickListener(oCLforShowButton);
+      	//壁紙設定ボタン
+        clickButtonImage = findViewById(R.id.button_image);
+        clickButtonImage.setOnClickListener(oCLforShowButton);
 
-      	//設定ボタンイベント
-        clickSetting2 = findViewById(R.id.button_image);
-        clickSetting2.setOnClickListener(oCLforShowButton);
-
-      	//位置取得ボタンイベント
-        clickSetting3 = findViewById(R.id.button_loc);
-        clickSetting3.setOnClickListener(oCLforShowButton);
+      	//位置取得ボタン
+        clickGetLocation = findViewById(R.id.button_loc);
+        clickGetLocation.setOnClickListener(oCLforShowButton);
         
-		Log.v(getString(R.string.log),"MainActivity　onCreate end");
+		Log.v(getString(R.string.log),"MainActivity　onCreate() end");
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
     
     @Override
     public void onStart(){
     	super.onStart();
-    	setText();
+    	setView();
    }
     
     @Override
     public void onRestart(){
     	super.onRestart();
-    	setText();
+    	setView();
     }
     
     @Override
     public void onDestroy(){
     	super.onDestroy();
 	    imgv.setBackground(null);
-	    clickSetting.setOnClickListener(null);
+	    clickButtonImage.setOnClickListener(null);
+	    clickGetLocation.setOnClickListener(null);
 	    System.gc();
     }
     
     //画面表示の設定
-    private void setText(){
-		Log.v(getString(R.string.log),"MainActivity　setText start");
+    private void setView(){
+		Log.v(getString(R.string.log),"MainActivity　setView() start");
 		
 		//設定データ取得
     	pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -121,23 +92,10 @@ public class MainActivity extends Activity {
     	//画面部品取得
     	imgv = (ImageView)findViewById(R.id.imageView1);
 
-		//キャラクター画像設定
-
-    	Log.v(getString(R.string.log),pref.getString(PREF_IMAGE, "none"));
-
-    	if(pref.getString(PREF_IMAGE, "none").equals("none")){
-    	    imgv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.def));	
-    	}else{
-    		try{
-    			BufferedInputStream inputStream = new BufferedInputStream(getContentResolver().openInputStream(Uri.parse(pref.getString(PREF_IMAGE, null))));
-    			Bitmap image = BitmapFactory.decodeStream(inputStream);
-    			imgv.setImageBitmap(image);
-    		}catch(Exception e){
-    			Log.v(getString(R.string.log),"error");
-    		}
-    	}
+		//壁紙設定
+    	setWallpaper();
     	
-    	//
+    	//テキスト設定
     	TextView text_lat = (TextView)findViewById( R.id.text_lat );
     	TextView text_long = (TextView)findViewById( R.id.text_long );
     	TextView text_dist = (TextView)findViewById( R.id.text_dist );
@@ -145,65 +103,69 @@ public class MainActivity extends Activity {
     	text_lat.setText(pref.getString(PREF_LAT, "0"));
     	text_long.setText(pref.getString(PREF_LONG, "0"));
     	text_dist.setText(pref.getString(PREF_DIST, "999"));
+
+    	Log.v(getString(R.string.log),"MainActivity　setView() end");
+
+    }
+    
+    private void setWallpaper(){
+    	if(pref.getString(PREF_IMAGE, "none").equals("none")){
+    		//デフォルト
+    	    imgv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.def));	
+    	}else{
+    		//ユーザー指定
+    		try{
+    			BufferedInputStream inputStream = new BufferedInputStream(getContentResolver().openInputStream(Uri.parse(pref.getString(PREF_IMAGE, null))));
+    			Bitmap image = BitmapFactory.decodeStream(inputStream);
+    			imgv.setImageBitmap(image);
+    		}catch(Exception e){
+    			Log.v(getString(R.string.log),"MainActivity　setWallpaper() error");
+    		}
+    	}
     }
 
-    //設定ボタンクリック時のリスナ
+    //ボタンクリック時のリスナ
     private final OnClickListener oCLforShowButton = new OnClickListener() {
     	
         @Override
         public void onClick(View v) {
             switch(v.getId()){
 
-            case R.id.button_setting:
-            	Intent intent = new Intent( getApplicationContext(), SettingMenuActivity.class );
-                startActivity( intent );
-                break;
-
+            //位置情報取得
             case R.id.button_loc:
-                //getLocation();
-            	Intent intent3 = new Intent( getApplicationContext(), ReportActivity.class );
-                startActivity( intent3 );
+                startActivity(new Intent( getApplicationContext(), ReportActivity.class ));
                 break;
                 
+            //壁紙設定
             case R.id.button_image:
-            	
             	putImage();
-            	
-            	/*
-            	// インテント設定
-            	Intent intent2 = new Intent(Intent.ACTION_PICK);
-            	// とりあえずストレージ内の全イメージ画像を対象
-            	intent2.setType("image/*");
-            	// ギャラリー表示
-            	startActivityForResult(intent2, REQUEST_PICK_CONTACT);
-            	*/
             	break;
             }
         }
     };
     
+    //壁紙設定
     void putImage(){
-    	final String[] items = {"デフォルト", "自分で選ぶ"};
+    	final String[] items = {"デフォルト", "画像フォルダから選ぶ"};
     	
     	new AlertDialog.Builder(MainActivity.this)
-    	.setTitle("データを選択してください")
+    	.setTitle("壁紙設定")
     	.setItems(items, new DialogInterface.OnClickListener() {
     	    public void onClick(DialogInterface dialog, int item) {
     	        switch (item) {
     	        case 0:
+    	        	//デフォルト"none"を設定
         			prefEditor = pref.edit();
-        			// savedCountを保存
         			prefEditor.putString(PREF_IMAGE, "none");
-        			// 最後commit
         			prefEditor.commit();
-        			imgv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.def));
+        			//画像設定
+        			setWallpaper();
     	            break;
     	        case 1:
-                	Intent intent2 = new Intent(Intent.ACTION_PICK);
-                	// とりあえずストレージ内の全イメージ画像を対象
-                	intent2.setType("image/*");
-                	// ギャラリー表示
-                	startActivityForResult(intent2, REQUEST_PICK_CONTACT);
+    	        	//ギャラリーを呼ぶ
+                	Intent intentGetImage = new Intent(Intent.ACTION_PICK);
+                	intentGetImage.setType("image/*");
+                	startActivityForResult(intentGetImage, REQUEST_PICK_CONTACT);
     	            break;
     	        }
     	    }
@@ -211,129 +173,23 @@ public class MainActivity extends Activity {
     	.show();	
     }
     
-    
-    /**
-     * 標準ギャラリーから戻り時に呼ばれるイベント
-     */
+    //ギャラリー戻り時のリスナ
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	if (requestCode == REQUEST_PICK_CONTACT && resultCode == RESULT_OK) {
     		try {
-    			BufferedInputStream inputStream = new BufferedInputStream(getContentResolver().openInputStream(data.getData()));
-    			Bitmap image = BitmapFactory.decodeStream(inputStream);
-    			imgv.setImageBitmap(image);
-    			
-    			Log.v(getString(R.string.log),data.getData().toString());
-    			
+    			//選択した画像のURIを設定
     			prefEditor = pref.edit();
-    			// savedCountを保存
     			prefEditor.putString(PREF_IMAGE, data.getData().toString());
-    			// 最後commit
     			prefEditor.commit();
-    			
+    			//画像設定
+    			setWallpaper();
     		} catch (Exception e) {
- 
+    			Log.v(getString(R.string.log),"MainActivity　onActivityResult() error");
     		}
     	}
     }
 
-    
-    private void getLocation(){
-        // 処理待ち中に行う処理をここに実装
-
-    	// LocationManagerを取得
-		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-    
-		// Criteriaオブジェクトを生成
-		Criteria criteria = new Criteria();
-    
-		// Accuracyを指定(低精度)
-		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-		 
-		// PowerRequirementを指定(低消費電力)
-		criteria.setPowerRequirement(Criteria.POWER_LOW);
-		 
-		// ロケーションプロバイダの取得
-		String provider = mLocationManager.getBestProvider(criteria, true);
-
-		// LocationListenerを登録
-		mLocationManager.requestLocationUpdates(provider,
-		        0,          // 10-second interval.
-		        0,             // 10 meters.
-		        listener);
-
-    }
-    
-
-    private final LocationListener listener = new LocationListener(){
-
-        @Override
-        public void onLocationChanged(Location location) {
-            
-        	mLocationManager.removeUpdates(this);
-
-        	/*
-        	Toast.makeText(getApplicationContext(), "報告しています",
-                    Toast.LENGTH_LONG).show();
-        	*/
-        	
-        	//旧ポイントを抽出
-        	Double old_lat =Double.parseDouble(pref.getString(PREF_LAT, "0"));
-        	Double old_long =Double.parseDouble(pref.getString(PREF_LONG, "0"));
-        	
-        	//差分を取得
-        	Double new_lat = location.getLatitude();
-        	Double new_long = location.getLongitude();
-        	
-        	//距離
-        	float old_dist =Float.parseFloat(pref.getString(PREF_DIST, "0"));
-        	float new_dist = 0f;
-        	float[] result = new float[3];
-        	Location.distanceBetween(old_lat, old_long, new_lat, new_long, result);
-        	
-        	if(old_lat!=0d && old_long!=0d){
-        		new_dist = old_dist + result[0];
-        	}
-
-    		Log.v(getString(R.string.log),"onLocationChanged " + old_lat);
-    		Log.v(getString(R.string.log),"onLocationChanged " + old_long);
-    		Log.v(getString(R.string.log),"onLocationChanged　" + new_lat);
-    		Log.v(getString(R.string.log),"onLocationChanged　" + new_long);
-    		Log.v(getString(R.string.log),"onLocationChanged　" + old_dist);
-    		Log.v(getString(R.string.log),"onLocationChanged　" + new_dist);
-
-        	prefEditor = pref.edit();
-        	
-			// savedCountを保存
-			prefEditor.putString(PREF_LAT, String.valueOf(new_lat));
-			prefEditor.putString(PREF_LONG, String.valueOf(new_long));
-			prefEditor.putString(PREF_DIST, String.valueOf(new_dist));
-			// 最後commit
-			prefEditor.commit();
-
-            Toast.makeText(getApplicationContext(), "報告しました",
-                    Toast.LENGTH_LONG).show();
-        }
-
-		@Override
-		public void onProviderDisabled(String provider) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onProviderEnabled(String provider) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-			// TODO Auto-generated method stub
-			
-		}
-    };
-    
 
  }
 
