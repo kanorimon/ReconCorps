@@ -27,7 +27,9 @@ public class MainActivity extends Activity {
     static final String PREF_LAT = "pref_lat";
     static final String PREF_LONG = "pref_long";
     static final String PREF_DIST = "pref_dist";
-
+    static final String PREF_LEVEL = "pref_level";
+    static final String PREF_GAS = "pref_gas";
+    
 	//View部品
 	private View clickButtonImage;
 	private View clickGetLocation;
@@ -100,6 +102,10 @@ public class MainActivity extends Activity {
 		//壁紙設定
     	setWallpaper();
     	
+    	//レベル
+    	TextView text_level = (TextView)findViewById( R.id.image_hekigai_0 );
+    	text_level.setText(pref.getString(PREF_LEVEL, "1"));
+
     	//テキスト設定
     	TextView text_lat = (TextView)findViewById( R.id.text_lat );
     	TextView text_long = (TextView)findViewById( R.id.text_long );

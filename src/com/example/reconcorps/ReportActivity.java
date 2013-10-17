@@ -21,6 +21,23 @@ public class ReportActivity extends Activity{
 	static final String PREF_LAT = "pref_lat";
     static final String PREF_LONG = "pref_long";
     static final String PREF_DIST = "pref_dist";
+    static final String PREF_LEVEL = "pref_level";
+    static final String PREF_USED_GAS = "pref_used_gas";
+    static final String PREF_REPORT = "pref_report";
+    static final String PREF_TITAN_3 = "pref_titan_3";
+    static final String PREF_TITAN_5 = "pref_titan_5";
+    static final String PREF_TITAN_7 = "pref_titan_7";
+    static final String PREF_TITAN_9 = "pref_titan_9";
+    static final String PREF_TITAN_11 = "pref_titan_11";
+    static final String PREF_TITAN_13 = "pref_titan_13";
+    static final String PREF_TITAN_15 = "pref_titan_15";
+    static final String PREF_KIKO_3 = "pref_kiko_3";
+    static final String PREF_KIKO_5 = "pref_kiko_5";
+    static final String PREF_KIKO_7 = "pref_kiko_7";
+    static final String PREF_KIKO_9 = "pref_kiko_9";
+    static final String PREF_KIKO_11 = "pref_kiko_11";
+    static final String PREF_KIKO_13 = "pref_kiko_13";
+    static final String PREF_KIKO_15 = "pref_kiko_15";
 
     // ロケーションマネージャー
     LocationManager mLocationManager;
@@ -31,6 +48,12 @@ public class ReportActivity extends Activity{
     
     //アニメーション
     AlphaAnimation animation_alpha;
+    
+    //ガス量
+    int gas;
+    
+    //レベル
+    int level;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,9 +97,12 @@ public class ReportActivity extends Activity{
    		// Criteriaオブジェクトを生成
    		Criteria criteria = new Criteria();
    		// Accuracyを指定(低精度)
-   		criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+   		//criteria.setAccuracy(Criteria.ACCURACY_COARSE);
    		// PowerRequirementを指定(低消費電力)
-   		criteria.setPowerRequirement(Criteria.POWER_LOW);
+   		//criteria.setPowerRequirement(Criteria.POWER_LOW);
+		criteria.setBearingRequired(false);	// 方位不要
+		criteria.setSpeedRequired(false);	// 速度不要
+		criteria.setAltitudeRequired(false);	// 高度不要
    		// ロケーションプロバイダの取得
    		String provider = mLocationManager.getBestProvider(criteria, true);
    		// LocationListenerを登録
@@ -123,6 +149,25 @@ public class ReportActivity extends Activity{
 			prefEditor.putString(PREF_DIST, String.valueOf(new_dist));
 			prefEditor.commit();
 
+			//レベル
+	    	level = 1;
+	    	if(new_dist > 5f){
+	   		    level = (int)(new_dist / 5f);
+	    	}
+        	prefEditor = pref.edit();
+			prefEditor.putString(PREF_LEVEL, String.valueOf(level));
+			prefEditor.commit();
+			
+			//ガス量
+			int used_gas =Integer.parseInt(pref.getString(PREF_USED_GAS, "0"));
+			gas = (int)(new_dist * 10.0f);
+			gas = gas - used_gas;
+			if(gas > 100){
+				gas = 100;
+			}
+    		Log.v(getString(R.string.log),"ReportActivity　onLocationChanged() gas  " + gas);
+    		Log.v(getString(R.string.log),"ReportActivity　onLocationChanged() new_dist * 10.0f  " + (new_dist * 10.0f));
+			
 			showResult();
 
         }
@@ -147,18 +192,100 @@ public class ReportActivity extends Activity{
     };
     
     private void showResult(){
-		//アニメーション終了
+
+    	//討伐数取得
+    	int titan_3 = Integer.parseInt(pref.getString(PREF_TITAN_3, "0"));
+    	int titan_5 = Integer.parseInt(pref.getString(PREF_TITAN_5, "0"));
+    	int titan_7 = Integer.parseInt(pref.getString(PREF_TITAN_7, "0"));
+    	int titan_9 = Integer.parseInt(pref.getString(PREF_TITAN_9, "0"));
+    	int titan_11 = Integer.parseInt(pref.getString(PREF_TITAN_11, "0"));
+    	int titan_13 = Integer.parseInt(pref.getString(PREF_TITAN_13, "0"));
+    	int titan_15 = Integer.parseInt(pref.getString(PREF_TITAN_15, "0"));
+    	int kiko_3 = Integer.parseInt(pref.getString(PREF_KIKO_3, "0"));
+    	int kiko_5 = Integer.parseInt(pref.getString(PREF_KIKO_5, "0"));
+    	int kiko_7 = Integer.parseInt(pref.getString(PREF_KIKO_7, "0"));
+    	int kiko_9 = Integer.parseInt(pref.getString(PREF_KIKO_9, "0"));
+    	int kiko_11 = Integer.parseInt(pref.getString(PREF_KIKO_11, "0"));
+    	int kiko_13 = Integer.parseInt(pref.getString(PREF_KIKO_13, "0"));
+    	int kiko_15 = Integer.parseInt(pref.getString(PREF_KIKO_15, "0"));
+    	
+		//巨人と遭遇
+    	StringBuffer sb = new StringBuffer("");
+    	int needGas = 0;
+		int[] random = {3,8,15,24,35,48,63,69,79,93,111,133,159,189};
+		int ran = (int)(Math.random()*350);
+		if(ran<random[0]){
+			sb.append("15m級奇行種");
+			needGas = getNeedGas(15,false);
+		}else if(ran<random[1]){
+			sb.append("13m級奇行種");
+			needGas = getNeedGas(13,false);
+		}else if(ran<random[2]){
+			sb.append("11m級奇行種");
+			needGas = getNeedGas(11,false);
+		}else if(ran<random[3]){
+			sb.append("9m級奇行種");
+			needGas = getNeedGas(9,false);
+		}else if(ran<random[4]){
+			sb.append("7m級奇行種");
+			needGas = getNeedGas(7,false);
+		}else if(ran<random[5]){
+			sb.append("5m級奇行種");
+			needGas = getNeedGas(5,false);
+		}else if(ran<random[6]){
+			sb.append("3m級奇行種");
+			needGas = getNeedGas(3,false);
+		}else if(ran<random[7]){
+			sb.append("15m級巨人");
+			needGas = getNeedGas(15,true);
+		}else if(ran<random[8]){
+			sb.append("13m級巨人");
+			needGas = getNeedGas(13,true);
+		}else if(ran<random[9]){
+			sb.append("11m級巨人");
+			needGas = getNeedGas(11,true);
+		}else if(ran<random[10]){
+			sb.append("9m級巨人");
+			needGas = getNeedGas(9,true);
+		}else if(ran<random[11]){
+			sb.append("7m級巨人");
+			needGas = getNeedGas(7,true);
+		}else if(ran<random[12]){
+			sb.append("5m級巨人");
+			needGas = getNeedGas(5,true);
+		}else if(ran<random[13]){
+			sb.append("3m級巨人");
+			needGas = getNeedGas(3,true);
+		}else{
+			sb.append("報告しました");
+		}
+
+    	//アニメーション終了
 		animation_alpha.cancel();
 		
-		//テキスト表示編集
+		//テキスト編集
 		TextView text_lat = (TextView)findViewById( R.id.text_report );
+		text_lat.setText(sb.toString());
 
-		int ran = (int)(Math.random()*10);
-		if(ran<5){
-			text_lat.setText("報告しました");
-		}else{
-			text_lat.setText("3m巨人に遭遇");
-		}
+		TextView text_gas = (TextView)findViewById( R.id.text_gas );
+		text_gas.setText("ガス残量" + String.valueOf(gas) + " 必要ガス量" + String.valueOf(needGas));
+		Log.v(getString(R.string.log),"ReportActivity　showResult() gas  " + gas);
+		Log.v(getString(R.string.log),"ReportActivity　showResult() needGas  " + needGas);
+
+
+    }
+    
+    int getNeedGas(int titanSize,boolean normal){
+
+    	int result = 0;
+    	if(normal){
+   			result = (100 * titanSize) / (level * 10);
+    	}else{
+   			result = (200 * titanSize) / (level * 10);
+    	}
+    	
+		return result;
+    	
     }
     
 

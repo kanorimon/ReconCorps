@@ -42,27 +42,31 @@ public final class R {
         public static final int levi=0x7f02000e;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f0a0000;
-        public static final int action_settings=0x7f0a000f;
+        public static final int LinearLayout=0x7f0a0001;
+        public static final int action_settings=0x7f0a0012;
         public static final int button_achievements=0x7f0a000c;
-        public static final int button_image=0x7f0a0003;
-        public static final int button_loc=0x7f0a0005;
-        public static final int button_return=0x7f0a000e;
-        public static final int imageView1=0x7f0a0002;
-        public static final int image_hekigai_0=0x7f0a0009;
-        public static final int image_hekigai_1=0x7f0a000a;
+        public static final int button_image=0x7f0a0004;
+        public static final int button_loc=0x7f0a0006;
+        public static final int button_return=0x7f0a000f;
+        public static final int first_textview=0x7f0a0010;
+        public static final int imageView1=0x7f0a0000;
+        public static final int image_hekigai_0=0x7f0a000a;
         public static final int image_hekigai_b=0x7f0a000b;
-        public static final int image_hekigai_f=0x7f0a0008;
-        public static final int listView1=0x7f0a0001;
-        public static final int text_dist=0x7f0a0006;
-        public static final int text_lat=0x7f0a0007;
-        public static final int text_long=0x7f0a0004;
+        public static final int image_hekigai_f=0x7f0a0009;
+        public static final int second_textview=0x7f0a0011;
+        public static final int text_achievement=0x7f0a0002;
+        public static final int text_dist=0x7f0a0007;
+        public static final int text_gas=0x7f0a000e;
+        public static final int text_lat=0x7f0a0008;
+        public static final int text_long=0x7f0a0005;
         public static final int text_report=0x7f0a000d;
+        public static final int users_listview=0x7f0a0003;
     }
     public static final class layout {
         public static final int activity_achievements=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int activity_report=0x7f030002;
+        public static final int row=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f090000;

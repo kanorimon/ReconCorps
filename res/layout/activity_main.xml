@@ -81,29 +81,19 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/hekigai_front" />
 
-    <ImageView
+    <TextView
         android:id="@+id/image_hekigai_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/image_hekigai_f"
-        android:layout_toRightOf="@+id/image_hekigai_f"
-        android:src="@drawable/hekigai_0" />
-    
-    <ImageView
-        android:id="@+id/image_hekigai_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/image_hekigai_f"
-        android:layout_toRightOf="@+id/image_hekigai_0"
-        android:src="@drawable/hekigai_1" />
-
+        android:layout_toRightOf="@+id/image_hekigai_f" />
     
     <ImageView
         android:id="@+id/image_hekigai_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/image_hekigai_f"
-        android:layout_toRightOf="@+id/image_hekigai_1"
+        android:layout_toRightOf="@+id/image_hekigai_0"
         android:src="@drawable/hekigai_back" />
 
         </RelativeLayout>
