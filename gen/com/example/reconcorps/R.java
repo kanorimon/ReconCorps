@@ -43,23 +43,26 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout=0x7f0a0001;
-        public static final int action_settings=0x7f0a0012;
-        public static final int button_achievements=0x7f0a000c;
-        public static final int button_image=0x7f0a0004;
-        public static final int button_loc=0x7f0a0006;
-        public static final int button_return=0x7f0a000f;
-        public static final int first_textview=0x7f0a0010;
+        public static final int action_settings=0x7f0a0015;
+        public static final int button_achievements=0x7f0a000d;
+        public static final int button_battle=0x7f0a0011;
+        public static final int button_escape=0x7f0a0012;
+        public static final int button_image=0x7f0a0005;
+        public static final int button_loc=0x7f0a0007;
+        public static final int button_return=0x7f0a0010;
+        public static final int button_return_ach=0x7f0a0004;
+        public static final int first_textview=0x7f0a0013;
         public static final int imageView1=0x7f0a0000;
-        public static final int image_hekigai_0=0x7f0a000a;
-        public static final int image_hekigai_b=0x7f0a000b;
-        public static final int image_hekigai_f=0x7f0a0009;
-        public static final int second_textview=0x7f0a0011;
+        public static final int image_hekigai_0=0x7f0a000b;
+        public static final int image_hekigai_b=0x7f0a000c;
+        public static final int image_hekigai_f=0x7f0a000a;
+        public static final int second_textview=0x7f0a0014;
         public static final int text_achievement=0x7f0a0002;
-        public static final int text_dist=0x7f0a0007;
-        public static final int text_gas=0x7f0a000e;
-        public static final int text_lat=0x7f0a0008;
-        public static final int text_long=0x7f0a0005;
-        public static final int text_report=0x7f0a000d;
+        public static final int text_dist=0x7f0a0008;
+        public static final int text_gas=0x7f0a000f;
+        public static final int text_lat=0x7f0a0009;
+        public static final int text_long=0x7f0a0006;
+        public static final int text_report=0x7f0a000e;
         public static final int users_listview=0x7f0a0003;
     }
     public static final class layout {

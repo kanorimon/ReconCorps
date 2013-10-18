@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,16 +26,15 @@ public class AchievementsActivity extends Activity{
     //設定ファイル関連
     SharedPreferences pref;
 
+    //ボタン
+	private View clickReturn;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
 		Log.v(getString(R.string.log),"AchievementsActivity　onCreate() start");
 
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_achievements);
-
-        //アクションバー非表示
-        ActionBar actionBar = getActionBar();
-		actionBar.hide();
 
 		//設定データ取得
     	pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -46,8 +47,35 @@ public class AchievementsActivity extends Activity{
             adapter.add(new Employee("employee" + (i + 1), 20 + i));
         }
 
+      	//戻るボタン
+        clickReturn = findViewById(R.id.button_return_ach);
+        clickReturn.setOnClickListener(oCLforShowButton);
+        
         Log.v(getString(R.string.log),"AchievementsActivity　onCreate() end");
 
+    }
+    
+    //ボタンクリック時のリスナ
+    private final OnClickListener oCLforShowButton = new OnClickListener() {
+    	
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()){
+
+            //戻るボタン
+            case R.id.button_return_ach:
+                AchievementsActivity.this.finish();
+                break;
+
+            }
+        }
+    };
+    
+    @Override
+    public void finish() {
+        super.finish();
+ 
+        overridePendingTransition(0, 0);
     }
     
     class Employee {

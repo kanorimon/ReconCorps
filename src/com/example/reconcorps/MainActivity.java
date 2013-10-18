@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -47,10 +48,6 @@ public class MainActivity extends Activity {
 
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //アクションバー非表示
-        ActionBar actionBar = getActionBar();
-		actionBar.hide();
         
       	//壁紙設定ボタン
         clickButtonImage = findViewById(R.id.button_image);
@@ -145,11 +142,13 @@ public class MainActivity extends Activity {
             //位置情報取得
             case R.id.button_loc:
                 startActivity(new Intent( getApplicationContext(), ReportActivity.class ));
+                overridePendingTransition(0, 0);
                 break;
                 
             //実績ページに遷移
             case R.id.button_achievements:
                 startActivity(new Intent( getApplicationContext(), AchievementsActivity.class ));
+                overridePendingTransition(0, 0);
                 break;
 
             //壁紙設定
@@ -204,6 +203,15 @@ public class MainActivity extends Activity {
     			Log.v(getString(R.string.log),"MainActivity　onActivityResult() error");
     		}
     	}
+    }
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+    	if (keyCode == KeyEvent.KEYCODE_BACK){
+			MainActivity.this.finish();
+    		return true;
+    	}
+    	return false;
     }
 
 

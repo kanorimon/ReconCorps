@@ -31,15 +31,31 @@
         android:layout_marginTop="22dp"
         android:text="ガス残量"
         android:textColor="#000000" />
-    
+
     <Button
         android:id="@+id/button_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/text_gas"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="52dp"
         android:text="戻る" />
 
+    <Button
+        android:id="@+id/button_battle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_return"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="たたかう" />
 
+    <Button
+        android:id="@+id/button_escape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_battle"
+        android:layout_centerHorizontal="true"
+        android:text="にげる" />
     
 </RelativeLayout>
