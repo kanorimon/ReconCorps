@@ -11,9 +11,9 @@
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
         android:adjustViewBounds="true" 
-		android:src="@drawable/def"
+		android:src="@drawable/back_levi"
 		android:scaleType="fitXY" />
-
+s
     <Button
         android:id="@+id/button_image"
         android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:src="@drawable/hekigai_front" />
+        android:src="@drawable/title_l" />
 
     <TextView
         android:id="@+id/image_hekigai_0"
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/image_hekigai_f"
         android:layout_toRightOf="@+id/image_hekigai_0"
-        android:src="@drawable/hekigai_back" />
+        android:src="@drawable/title_r" />
 
         </RelativeLayout>
     </RelativeLayout>

@@ -25,21 +25,42 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int def=0x7f020000;
-        public static final int hekigai_0=0x7f020001;
-        public static final int hekigai_1=0x7f020002;
-        public static final int hekigai_2=0x7f020003;
-        public static final int hekigai_3=0x7f020004;
-        public static final int hekigai_4=0x7f020005;
-        public static final int hekigai_5=0x7f020006;
-        public static final int hekigai_6=0x7f020007;
-        public static final int hekigai_7=0x7f020008;
-        public static final int hekigai_8=0x7f020009;
-        public static final int hekigai_9=0x7f02000a;
-        public static final int hekigai_back=0x7f02000b;
-        public static final int hekigai_front=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
-        public static final int levi=0x7f02000e;
+        public static final int back_levi=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int img_achievement=0x7f020002;
+        public static final int img_dot=0x7f020003;
+        public static final int img_history=0x7f020004;
+        public static final int img_kikoshu=0x7f020005;
+        public static final int img_km=0x7f020006;
+        public static final int img_report=0x7f020007;
+        public static final int img_return=0x7f020008;
+        public static final int img_ruikei_l=0x7f020009;
+        public static final int img_ruikei_r=0x7f02000a;
+        public static final int img_slash=0x7f02000b;
+        public static final int img_titan=0x7f02000c;
+        public static final int img_title_achievement=0x7f02000d;
+        public static final int img_title_history=0x7f02000e;
+        public static final int num_l_0=0x7f02000f;
+        public static final int num_l_1=0x7f020010;
+        public static final int num_l_2=0x7f020011;
+        public static final int num_l_3=0x7f020012;
+        public static final int num_l_4=0x7f020013;
+        public static final int num_l_5=0x7f020014;
+        public static final int num_l_6=0x7f020015;
+        public static final int num_l_7=0x7f020016;
+        public static final int num_l_8=0x7f020017;
+        public static final int num_l_9=0x7f020018;
+        public static final int report_battle=0x7f020019;
+        public static final int report_end=0x7f02001a;
+        public static final int report_escape=0x7f02001b;
+        public static final int report_kikoshu=0x7f02001c;
+        public static final int report_needgas=0x7f02001d;
+        public static final int report_now=0x7f02001e;
+        public static final int report_parsent=0x7f02001f;
+        public static final int report_titan=0x7f020020;
+        public static final int report_usegas=0x7f020021;
+        public static final int title_l=0x7f020022;
+        public static final int title_r=0x7f020023;
     }
     public static final class id {
         public static final int LinearLayout=0x7f0a0001;
