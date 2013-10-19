@@ -97,12 +97,14 @@ public class ReportActivity extends Activity{
 		flashAnimation();
 		
 		//アニメーション適用
+        /*
         TextView text_report = (TextView)findViewById( R.id.text_report );
         text_report.startAnimation( animation_alpha );
     	
       	//戻るボタン
         clickReturn = findViewById(R.id.button_return);
         clickReturn.setOnClickListener(oCLforShowButton);
+        */
 
       	//戻るボタン
         clickBattle = findViewById(R.id.button_battle);
@@ -129,10 +131,11 @@ public class ReportActivity extends Activity{
             switch(v.getId()){
 
             //戻るボタン
+            /*
             case R.id.button_return:
                 ReportActivity.this.finish();
                 break;
-                
+              */  
             //たたかうボタン
             case R.id.button_battle:
             	
@@ -384,6 +387,7 @@ public class ReportActivity extends Activity{
     	//アニメーション終了
 		animation_alpha.cancel();
 		
+		/*
 		//テキスト編集
 		TextView text_lat = (TextView)findViewById( R.id.text_report );
 		text_lat.setText(sb.toString());
@@ -392,7 +396,7 @@ public class ReportActivity extends Activity{
 		text_gas.setText("ガス残量" + String.valueOf(gas) + " 必要ガス量" + String.valueOf(need_gas));
 		Log.v(getString(R.string.log),"ReportActivity　showResult() gas  " + gas);
 		Log.v(getString(R.string.log),"ReportActivity　showResult() needGas  " + need_gas);
-
+*/
 
     }
     

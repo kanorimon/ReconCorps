@@ -24,35 +24,59 @@
                 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="vertical" >
         
-            <TextView
-                android:id="@+id/text_achievement"
+       <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/image_report_now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-                android:text="実績一覧"
-                android:textColor="#000000" />
+                android:src="@drawable/img_achievement" />
+
+        </RelativeLayout>
+
             </RelativeLayout>
+
 
                 <ListView
                     android:id="@+id/users_listview"
     android:layout_width="fill_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1" />
+            android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+
+            android:layout_weight="1" />
     
                                 <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical" >
 
-         <Button
-             android:id="@+id/button_return_ach"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerInParent="true"
-             android:text="もどる" />
+                          <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+                     android:orientation="vertical" >
 
+
+    <Button
+        android:id="@+id/button_return_ach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+                                  android:background="@drawable/img_return" />
+
+
+      
+                                    
+             
+               </RelativeLayout>
                </RelativeLayout>
          
   </LinearLayout>

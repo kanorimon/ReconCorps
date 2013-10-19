@@ -14,48 +14,278 @@
 		android:src="@drawable/back_levi"
 		android:scaleType="fitXY" />
 
-    <TextView
-        android:id="@+id/text_report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:text="報告しています"
-        android:textColor="#000000" />
-    <TextView
-        android:id="@+id/text_gas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_report"
-        android:layout_marginTop="22dp"
-        android:text="ガス残量"
-        android:textColor="#000000" />
+    
+    
+        <LinearLayout   
+    android:id="@+id/LinearLayout"  
+    android:orientation="vertical"  
+    android:layout_height="fill_parent"  
+    android:layout_width="fill_parent">
 
-    <Button
-        android:id="@+id/button_return"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_gas"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:text="戻る" />
+                
+                <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical" >
+        
+       <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
 
+            <ImageView
+                android:id="@+id/image_report_now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_kikoshu" />
+
+        </RelativeLayout>
+
+            </RelativeLayout>
+
+                                
+                <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+        
+      <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
+           
+            <ImageView
+                android:id="@+id/image_titan_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/num_l_1" />
+
+            <ImageView
+                android:id="@+id/image_titan_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_titan_1"
+                android:layout_toRightOf="@+id/image_titan_1"
+                android:src="@drawable/num_l_5" />
+
+                        <ImageView
+                android:id="@+id/image_titan_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_titan_1"
+                android:layout_toRightOf="@+id/image_titan_2"
+                android:src="@drawable/report_titan" />
+                        
+ 
+
+        </RelativeLayout>
+
+            </RelativeLayout>
+        
+   
+            
+     <LinearLayout
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+              android:layout_marginTop="30dp"
+  >
+     
+               <RelativeLayout
+     android:layout_width="0dip"
+    android:layout_weight="1"
+            android:layout_height="wrap_content"
+
+          android:orientation="vertical" >
+        
+      <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:orientation="vertical" >
+           
+     <LinearLayout
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+               >
+                               <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+  
+                                   <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
     <Button
         android:id="@+id/button_battle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_return"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="たたかう" />
+        android:background="@drawable/report_battle"  />
+     
+    </RelativeLayout>
+
+                  </RelativeLayout>
+  
+                 <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+               android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+  
+                                                                  
+          <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:orientation="vertical" >
+             
+            <ImageView
+                android:id="@+id/image_needgas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/report_needgas" />
+
+            <ImageView
+                android:id="@+id/image_needgas_1"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_needgas"
+                android:layout_toRightOf="@+id/image_needgas"
+                android:src="@drawable/num_l_1" />
+            <ImageView
+                android:id="@+id/image_needgas_2"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_needgas"
+                android:layout_toRightOf="@+id/image_needgas_1"
+                android:src="@drawable/num_l_0" />
+            <ImageView
+                android:id="@+id/image_needgas_3"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_needgas"
+                android:layout_toRightOf="@+id/image_needgas_2"
+                android:src="@drawable/num_l_0" />     
+            <ImageView
+                android:id="@+id/image_needgas_parsent"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_needgas"
+                android:layout_toRightOf="@+id/image_needgas_3"
+                android:src="@drawable/report_parsent" />
+                        
+
+            </RelativeLayout>
+
+                            </RelativeLayout>
+          
+                        <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+        android:orientation="vertical" >
+                 
+               <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+              android:layout_centerInParent="true"
+              
+                         android:orientation="vertical" >
+ 
+          
+               <ImageView
+                android:id="@+id/image_usegas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/report_usegas" />
+
+            <ImageView
+                android:id="@+id/image_usegas_1"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_usegas"
+                android:layout_toRightOf="@+id/image_usegas"
+                android:src="@drawable/num_l_1" />
+            <ImageView
+                android:id="@+id/image_usegas_2"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_usegas"
+                android:layout_toRightOf="@+id/image_usegas_1"
+                android:src="@drawable/num_l_0" />
+            <ImageView
+                android:id="@+id/image_usegas_3"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_usegas"
+                android:layout_toRightOf="@+id/image_usegas_2"
+                android:src="@drawable/num_l_0" />     
+            <ImageView
+                android:id="@+id/image_usegas_parsent"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_usegas"
+                android:layout_toRightOf="@+id/image_usegas_3"
+                android:src="@drawable/report_parsent" />
+                                            
+                             </RelativeLayout>
+            
+
+        </RelativeLayout>
+
+          
+ </LinearLayout>
+
+        </RelativeLayout>
+
+            </RelativeLayout>
+             
+              
+     
+               
+               <RelativeLayout
+     android:layout_width="0dip"
+    android:layout_weight="1"
+            android:layout_height="wrap_content"
+                  android:orientation="vertical" >
+        
+ 
+                          <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical" >
+
 
     <Button
         android:id="@+id/button_escape"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_battle"
-        android:layout_centerHorizontal="true"
-        android:text="にげる" />
+                                  android:background="@drawable/report_escape" />
+
+
+      
+      </RelativeLayout>
+                   
+
+            </RelativeLayout>
+                                
+               </LinearLayout>
+    
+
+         
+  </LinearLayout>
+    
+
+
+
     
 </RelativeLayout>

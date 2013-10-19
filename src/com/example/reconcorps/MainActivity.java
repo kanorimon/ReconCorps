@@ -90,21 +90,76 @@ public class MainActivity extends Activity {
 
     	
     	//レベル
-    	TextView text_level = (TextView)findViewById( R.id.image_hekigai_0 );
-    	text_level.setText(pref.getString(PREF_LEVEL, "1"));
+    	setLevel(Integer.parseInt(pref.getString(PREF_LEVEL, "1")));
 
     	//テキスト設定
+    	/*
     	TextView text_lat = (TextView)findViewById( R.id.text_lat );
     	TextView text_long = (TextView)findViewById( R.id.text_long );
     	TextView text_dist = (TextView)findViewById( R.id.text_dist );
     	
     	text_lat.setText(pref.getString(PREF_LAT, "0"));
-    	text_long.setText(pref.getString(PREF_LONG, "0"));
+    	text_long.setText(pref.getString(PREF_LONG, "0"));d
     	text_dist.setText(pref.getString(PREF_DIST, "999"));
+    	*/
 
     	Log.v(getString(R.string.log),"MainActivity　setView() end");
 
     }
+    
+    void setLevel(int level){
+
+    	int topDrawable = getuNumDrawable(level / 10);
+    	int bottomDrawable = getuNumDrawable(level %10);
+    	
+    	ImageView level1 = (ImageView)findViewById( R.id.image_hekigai_0);
+    	level1.setImageBitmap(BitmapFactory.decodeResource(getResources(), topDrawable)); 
+    	
+    	ImageView level2 = (ImageView)findViewById( R.id.image_hekigai_1);
+    	level2.setImageBitmap(BitmapFactory.decodeResource(getResources(), bottomDrawable));
+    	
+    }
+    
+    int getuNumDrawable(int num){
+    	
+    	int topDrawable = 0;
+    	switch(num){
+    	case 0:
+    		topDrawable = R.drawable.num_l_0;
+    		break;
+    	case 1:
+    		topDrawable = R.drawable.num_l_1;
+    		break;
+    	case 2:
+    		topDrawable = R.drawable.num_l_2;
+    		break;
+    	case 3:
+    		topDrawable = R.drawable.num_l_3;
+    		break;
+    	case 4:
+    		topDrawable = R.drawable.num_l_4;
+    		break;
+    	case 5:
+    		topDrawable = R.drawable.num_l_5;
+    		break;
+    	case 6:
+    		topDrawable = R.drawable.num_l_6;
+    		break;
+    	case 7:
+    		topDrawable = R.drawable.num_l_7;
+    		break;
+    	case 8:
+    		topDrawable = R.drawable.num_l_8;
+    		break;
+    	case 9:
+    		topDrawable = R.drawable.num_l_9;
+    		break;
+    	}
+    	
+    	return topDrawable;
+
+    }
+    
 
     //ボタンクリック時のリスナ
     private final OnClickListener oCLforShowButton = new OnClickListener() {
