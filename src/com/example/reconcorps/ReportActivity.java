@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ReportActivity extends Activity{
@@ -24,6 +26,8 @@ public class ReportActivity extends Activity{
 	static final String PREF_LAT = "pref_lat";
     static final String PREF_LONG = "pref_long";
     static final String PREF_DIST = "pref_dist";
+    static final String PREF_UP_DIST = "pref_up_dist";
+    static final String PREF_COUNT = "pref_count";
     static final String PREF_LEVEL = "pref_level";
     static final String PREF_USED_GAS = "pref_used_gas";
     static final String PREF_REPORT = "pref_report";
@@ -53,6 +57,10 @@ public class ReportActivity extends Activity{
 	private View clickReturn;
 	private View clickBattle;
 	private View clickEscape;
+	ImageView image_report_now;
+	View relative_return;
+	View relative_titan;
+	View relative_sogu;
 	
     //アニメーション
     AlphaAnimation animation_alpha;
@@ -93,18 +101,25 @@ public class ReportActivity extends Activity{
 		//設定データ取得
     	pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+    	//非表示
+    	image_report_now = (ImageView)findViewById(R.id.image_report_now);
+    	relative_return = findViewById(R.id.relative_return);
+    	relative_titan = findViewById(R.id.relative_titan);
+    	relative_sogu = findViewById(R.id.relative_sogu);
+    	
+    	relative_return.setVisibility(View.GONE);
+    	relative_titan.setVisibility(View.GONE);
+    	relative_sogu.setVisibility(View.GONE);
+    	
     	//アニメーション設定
 		flashAnimation();
 		
 		//アニメーション適用
-        /*
-        TextView text_report = (TextView)findViewById( R.id.text_report );
-        text_report.startAnimation( animation_alpha );
+        image_report_now.startAnimation( animation_alpha );
     	
       	//戻るボタン
         clickReturn = findViewById(R.id.button_return);
         clickReturn.setOnClickListener(oCLforShowButton);
-        */
 
       	//戻るボタン
         clickBattle = findViewById(R.id.button_battle);
@@ -131,11 +146,13 @@ public class ReportActivity extends Activity{
             switch(v.getId()){
 
             //戻るボタン
-            /*
+            
             case R.id.button_return:
                 ReportActivity.this.finish();
+                startActivity(new Intent( getApplicationContext(), MainActivity.class ));
+                overridePendingTransition(0, 0);
                 break;
-              */  
+             
             //たたかうボタン
             case R.id.button_battle:
             	
@@ -173,12 +190,16 @@ public class ReportActivity extends Activity{
     			prefEditor.putString(PREF_USED_GAS, String.valueOf(used_gas + need_gas));
     			prefEditor.commit();
                 ReportActivity.this.finish();
+                startActivity(new Intent( getApplicationContext(), MainActivity.class ));
+                overridePendingTransition(0, 0);
 
                 break;
 
             //にげるボタン
             case R.id.button_escape:
                 ReportActivity.this.finish();
+                startActivity(new Intent( getApplicationContext(), MainActivity.class ));
+                overridePendingTransition(0, 0);
                 break;
             }
         }
@@ -187,8 +208,9 @@ public class ReportActivity extends Activity{
     @Override
     public void finish() {
         super.finish();
- 
+
         overridePendingTransition(0, 0);
+        
     }
     
     
@@ -258,13 +280,25 @@ public class ReportActivity extends Activity{
 			prefEditor.putString(PREF_DIST, String.valueOf(new_dist));
 			prefEditor.commit();
 
+			//報告回数
+			int cnt = Integer.parseInt(pref.getString(PREF_COUNT, "0"));
+        	prefEditor = pref.edit();
+			prefEditor.putString(PREF_COUNT, String.valueOf(cnt + 1));
+			prefEditor.commit();
+			
 			//レベル
+			float keisu = 500f;
 	    	level = 1;
-	    	if(new_dist > 5f){
-	   		    level = (int)(new_dist / 5f);
+	    	if(new_dist > keisu){
+	   		    level = (int)(new_dist / keisu);
 	    	}
         	prefEditor = pref.edit();
 			prefEditor.putString(PREF_LEVEL, String.valueOf(level));
+			prefEditor.commit();
+			
+			//残り距離
+        	prefEditor = pref.edit();
+			prefEditor.putString(PREF_UP_DIST, String.valueOf(((level+1)*keisu) - (new_dist / 10f)));
 			prefEditor.commit();
 			
 			//ガス量
@@ -318,6 +352,9 @@ public class ReportActivity extends Activity{
     	kiko_13 = Integer.parseInt(pref.getString(PREF_KIKO_13, "0"));
     	kiko_15 = Integer.parseInt(pref.getString(PREF_KIKO_15, "0"));
     	
+    	//
+    	ImageView image_titan_val = (ImageView)findViewById(R.id.image_titan_val);
+    	
 		//巨人と遭遇
     	StringBuffer sb = new StringBuffer("");
     	need_gas = 0;
@@ -327,78 +364,208 @@ public class ReportActivity extends Activity{
 			sb.append("15m級奇行種");
 			need_gas = getNeedGas(15,false);
 			titan = 0;
+			setTitan(15);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_kikoshu));
+			image_titan_val.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.report_kikoshu));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[1]){
 			sb.append("13m級奇行種");
 			need_gas = getNeedGas(13,false);
 			titan = 1;
+			setTitan(13);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_kikoshu));
+			image_titan_val.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.report_kikoshu));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[2]){
 			sb.append("11m級奇行種");
 			need_gas = getNeedGas(11,false);
 			titan = 2;
+			setTitan(11);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_kikoshu));
+			image_titan_val.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.report_kikoshu));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[3]){
 			sb.append("9m級奇行種");
 			need_gas = getNeedGas(9,false);
 			titan = 3;
+			setTitan(9);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_kikoshu));
+			image_titan_val.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.report_kikoshu));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[4]){
 			sb.append("7m級奇行種");
 			need_gas = getNeedGas(7,false);
 			titan = 4;
+			setTitan(7);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_kikoshu));
+			image_titan_val.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.report_kikoshu));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[5]){
 			sb.append("5m級奇行種");
 			need_gas = getNeedGas(5,false);
 			titan = 5;
+			setTitan(5);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_kikoshu));
+			image_titan_val.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.report_kikoshu));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[6]){
 			sb.append("3m級奇行種");
 			need_gas = getNeedGas(3,false);
 			titan = 6;
+			setTitan(3);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_kikoshu));
+			image_titan_val.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.report_kikoshu));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[7]){
 			sb.append("15m級巨人");
 			need_gas = getNeedGas(15,true);
 			titan = 7;
+			setTitan(15);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_titan));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[8]){
 			sb.append("13m級巨人");
 			need_gas = getNeedGas(13,true);
 			titan = 8;
+			setTitan(13);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_titan));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[9]){
 			sb.append("11m級巨人");
 			need_gas = getNeedGas(11,true);
 			titan = 9;
+			setTitan(11);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_titan));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[10]){
 			sb.append("9m級巨人");
 			need_gas = getNeedGas(9,true);
 			titan = 10;
+			setTitan(9);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_titan));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[11]){
 			sb.append("7m級巨人");
 			need_gas = getNeedGas(7,true);
 			titan = 11;
+			setTitan(7);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_titan));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[12]){
 			sb.append("5m級巨人");
 			need_gas = getNeedGas(5,true);
 			titan = 12;
+			setTitan(5);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_titan));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else if(ran<random[13]){
 			sb.append("3m級巨人");
 			need_gas = getNeedGas(3,true);
 			titan = 13;
+			setTitan(3);
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.img_titan));
+			relative_titan.setVisibility(View.VISIBLE);
+			relative_sogu.setVisibility(View.VISIBLE);
 		}else{
 			sb.append("報告しました");
 			titan = 99;
+			image_report_now.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.report_end));
+			relative_return.setVisibility(View.VISIBLE);
 		}
 
+
+    	//ガス量
+		if(need_gas > gas ){
+			View relative_battle = findViewById(R.id.relative_battle);
+			relative_battle.setVisibility(View.GONE);
+		}else{
+
+	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_1),need_gas / 100,true);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_2),(need_gas % 100) / 10,true);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_3),need_gas % 10,false);
+	    	
+	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_1),gas / 100,true);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_2),(gas % 100) / 10,true);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_3),gas % 10,false);
+
+		}
+		
+		
     	//アニメーション終了
 		animation_alpha.cancel();
-		
-		/*
-		//テキスト編集
-		TextView text_lat = (TextView)findViewById( R.id.text_report );
-		text_lat.setText(sb.toString());
-
-		TextView text_gas = (TextView)findViewById( R.id.text_gas );
-		text_gas.setText("ガス残量" + String.valueOf(gas) + " 必要ガス量" + String.valueOf(need_gas));
-		Log.v(getString(R.string.log),"ReportActivity　showResult() gas  " + gas);
-		Log.v(getString(R.string.log),"ReportActivity　showResult() needGas  " + need_gas);
-*/
 
     }
+
+    void setTitan(int size){
+    	setNumDrawable((ImageView)findViewById( R.id.image_titan_1),size / 10,true);
+    	setNumDrawable((ImageView)findViewById( R.id.image_titan_2),size % 10,false);
+ 	
+    }
+
+    void setNumDrawable(ImageView imv, int num, boolean istop){
+
+    	if(istop && num==0){
+    		imv.setVisibility(View.GONE);  		
+    	}else{
+    		imv.setImageBitmap(BitmapFactory.decodeResource(getResources(), getuNumDrawable(num))); 
+    	}
+
+    	
+    }
+    
+    int getuNumDrawable(int num){
+    	
+    	int topDrawable = 0;
+    	switch(num){
+    	case 0:
+    		topDrawable = R.drawable.num_l_0;
+    		break;
+    	case 1:
+    		topDrawable = R.drawable.num_l_1;
+    		break;
+    	case 2:
+    		topDrawable = R.drawable.num_l_2;
+    		break;
+    	case 3:
+    		topDrawable = R.drawable.num_l_3;
+    		break;
+    	case 4:
+    		topDrawable = R.drawable.num_l_4;
+    		break;
+    	case 5:
+    		topDrawable = R.drawable.num_l_5;
+    		break;
+    	case 6:
+    		topDrawable = R.drawable.num_l_6;
+    		break;
+    	case 7:
+    		topDrawable = R.drawable.num_l_7;
+    		break;
+    	case 8:
+    		topDrawable = R.drawable.num_l_8;
+    		break;
+    	case 9:
+    		topDrawable = R.drawable.num_l_9;
+    		break;
+    	}
+    	
+    	return topDrawable;
+
+    }
+    
     
     int getNeedGas(int titanSize,boolean normal){
 

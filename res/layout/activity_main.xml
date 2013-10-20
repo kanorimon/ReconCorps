@@ -75,122 +75,86 @@
         android:orientation="vertical" >
         
        <RelativeLayout
+                android:id="@+id/relative_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
             android:orientation="vertical" >
 
             <ImageView
-                android:id="@+id/image_level_l_0"
-                android:layout_width="20dp"
+                android:id="@+id/image_level_0"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/num_l_1" />
 
             <ImageView
-                android:id="@+id/image_level_l_1"
-                android:layout_width="20dp"
+                android:id="@+id/image_level_1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_l_0"
+                android:layout_alignBottom="@+id/image_level_0"
+                android:layout_toRightOf="@+id/image_level_0"
                 android:src="@drawable/num_l_2" />
 
                         <ImageView
-                android:id="@+id/image_level_l_2"
-                android:layout_width="20dp"
+                android:id="@+id/image_level_2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_l_1"
+                android:layout_alignBottom="@+id/image_level_0"
+                android:layout_toRightOf="@+id/image_level_1"
                 android:src="@drawable/num_l_2" />
                         
                                     <ImageView
-                android:id="@+id/image_level_l_3"
-                android:layout_width="20dp"
+                android:id="@+id/image_level_3"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_l_2"
+                android:layout_alignBottom="@+id/image_level_0"
+                android:layout_toRightOf="@+id/image_level_2"
                 android:src="@drawable/num_l_2" />
                                     
                                                 <ImageView
-                android:id="@+id/image_level_l_4"
-                android:layout_width="20dp"
+                android:id="@+id/image_level_4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_l_3"
+                android:layout_alignBottom="@+id/image_level_0"
+                android:layout_toRightOf="@+id/image_level_3"
                 android:src="@drawable/num_l_2" />
-                                                
+
+                                     <ImageView
+                android:id="@+id/image_level_dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_level_0"
+                android:layout_toRightOf="@+id/image_level_4"
+                android:src="@drawable/img_dot2" />
+                                    
+                                    
+                                    <ImageView
+                android:id="@+id/image_level_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_level_0"
+                android:layout_toRightOf="@+id/image_level_dot"
+                android:src="@drawable/num_l_4" />
+                                    
+                                    
+                                    <ImageView
+                android:id="@+id/image_level_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_level_0"
+                android:layout_toRightOf="@+id/image_level_5"
+                android:src="@drawable/num_l_4" />
+                        
                         
                         
                         <ImageView
-                android:id="@+id/image_level_l_km"
+                android:id="@+id/image_level_km"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_l_4"
+                android:layout_alignBottom="@+id/image_level_0"
+                android:layout_toRightOf="@+id/image_level_6"
                 android:src="@drawable/img_km" />
                         
-                        <ImageView
-                android:id="@+id/image_level_slash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_l_km"
-                android:src="@drawable/img_slash" />
-                        
-            <ImageView
-                android:id="@+id/image_level_r_0"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_slash"
-                android:src="@drawable/num_l_3" />
-
-                        <ImageView
-                android:id="@+id/image_level_r_1"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_r_0"
-                android:src="@drawable/num_l_4" />
-  
-                         <ImageView
-                android:id="@+id/image_level_r_2"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_r_1"
-                android:src="@drawable/num_l_4" />
-  
-                         
-                                                 <ImageView
-                android:id="@+id/image_level_r_3"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_r_2"
-                android:src="@drawable/num_l_4" />
-  
-                                                 
-                                                 
-                  <ImageView
-                android:id="@+id/image_level_r_4"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_r_3"
-                android:src="@drawable/num_l_4" />
-  
-
-  
-                                                                                                 
-                         <ImageView
-                android:id="@+id/image_level_r_km"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_level_l_0"
-                android:layout_toRightOf="@+id/image_level_r_4"
-                android:src="@drawable/img_km" />
- 
-
         </RelativeLayout>
 
             </RelativeLayout>
@@ -199,7 +163,7 @@
                                <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical" >
         
        <RelativeLayout
@@ -212,7 +176,7 @@
                 android:id="@+id/image_ruikei_l"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_ruikei_l" />
+                android:src="@drawable/img_kikan" />
 
             <ImageView
                 android:id="@+id/image_ruikei_0"
@@ -286,7 +250,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/image_ruikei_l"
                 android:layout_toRightOf="@+id/image_ruikei_6"
-                android:src="@drawable/img_ruikei_r" />                                    
+                android:src="@drawable/img_km" />                                    
                                     
 
  

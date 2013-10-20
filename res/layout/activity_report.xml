@@ -39,14 +39,43 @@
                 android:id="@+id/image_report_now"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/img_kikoshu" />
+                android:src="@drawable/report_now" />
 
         </RelativeLayout>
 
             </RelativeLayout>
 
+     <RelativeLayout
+                android:id="@+id/relative_return"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+                          <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+                                 android:orientation="vertical" >
+
+
+    <Button
+        android:id="@+id/button_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+                                  android:background="@drawable/img_return" />
+
+
+      
+                                    
+             
+               </RelativeLayout>
+               </RelativeLayout>
+                
                                 
                 <RelativeLayout
+                android:id="@+id/relative_titan"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -89,6 +118,7 @@
    
             
      <LinearLayout
+                android:id="@+id/relative_sogu"
   android:orientation="horizontal"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
@@ -96,6 +126,8 @@
   >
      
                <RelativeLayout
+                android:id="@+id/relative_battle"
+
      android:layout_width="0dip"
     android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -281,6 +313,8 @@
                </LinearLayout>
     
 
+
+     
          
   </LinearLayout>
     
