@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/image_level_0"
                 android:layout_toRightOf="@+id/image_level_6"
-                android:src="@drawable/img_km" />
+                android:src="@drawable/img_km2" />
                         
         </RelativeLayout>
 

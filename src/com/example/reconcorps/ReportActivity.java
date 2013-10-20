@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -287,7 +288,7 @@ public class ReportActivity extends Activity{
 			prefEditor.commit();
 			
 			//レベル
-			float keisu = 500f;
+			float keisu = 5000f;
 	    	level = 1;
 	    	if(new_dist > keisu){
 	   		    level = (int)(new_dist / keisu);
@@ -298,17 +299,18 @@ public class ReportActivity extends Activity{
 			
 			//残り距離
         	prefEditor = pref.edit();
-			prefEditor.putString(PREF_UP_DIST, String.valueOf(((level+1)*keisu) - (new_dist / 10f)));
+			prefEditor.putString(PREF_UP_DIST, String.valueOf(((level+1)*keisu) - (new_dist)));
 			prefEditor.commit();
 			
 			//ガス量
 			used_gas =Integer.parseInt(pref.getString(PREF_USED_GAS, "0"));
-			gas = (int)(new_dist * 10.0f);
+			gas = (int)(new_dist / 10f);
 			gas = gas - used_gas;
 			if(gas > 100){
 				gas = 100;
 			}
-    		Log.v(getString(R.string.log),"ReportActivity　onLocationChanged() gas  " + gas);
+
+			Log.v(getString(R.string.log),"ReportActivity　onLocationChanged() gas  " + gas);
     		Log.v(getString(R.string.log),"ReportActivity　onLocationChanged() new_dist * 10.0f  " + (new_dist * 10.0f));
 			
 			showResult();
@@ -489,19 +491,21 @@ public class ReportActivity extends Activity{
 
     	//ガス量
 		if(need_gas > gas ){
-			View relative_battle = findViewById(R.id.relative_battle);
-			relative_battle.setVisibility(View.GONE);
-		}else{
 
-	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_1),need_gas / 100,true);
-	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_2),(need_gas % 100) / 10,true);
-	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_3),need_gas % 10,false);
-	    	
-	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_1),gas / 100,true);
-	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_2),(gas % 100) / 10,true);
-	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_3),gas % 10,false);
-
+			Button button_battle = (Button)findViewById( R.id.button_battle);
+			button_battle.setBackground(getResources().getDrawable(R.drawable.report_battle_ng));
+			button_battle.setEnabled(false);
+			
 		}
+
+	    	boolean istop = setNumDrawable((ImageView)findViewById( R.id.image_needgas_1),need_gas / 1000,true);
+	    	istop = setNumDrawable((ImageView)findViewById( R.id.image_needgas_2),(need_gas % 1000) / 100,istop);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_3),(need_gas % 100) / 10,istop);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_4),need_gas % 10,false);
+	    	
+	    	istop = setNumDrawable((ImageView)findViewById( R.id.image_usegas_1),gas / 100,true);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_2),(gas % 100) / 10,istop);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_3),gas % 10,false);
 		
 		
     	//アニメーション終了
@@ -515,13 +519,17 @@ public class ReportActivity extends Activity{
  	
     }
 
-    void setNumDrawable(ImageView imv, int num, boolean istop){
-
+    boolean setNumDrawable(ImageView imv, int num, boolean istop){
+    	
+    	boolean result = false;
     	if(istop && num==0){
     		imv.setVisibility(View.GONE);  		
+    		result = true;
     	}else{
     		imv.setImageBitmap(BitmapFactory.decodeResource(getResources(), getuNumDrawable(num))); 
     	}
+    	
+    	return result;
 
     	
     }

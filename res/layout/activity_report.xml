@@ -207,11 +207,18 @@
                 android:layout_toRightOf="@+id/image_needgas_2"
                 android:src="@drawable/num_l_0" />     
             <ImageView
-                android:id="@+id/image_needgas_parsent"
+                android:id="@+id/image_needgas_4"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/image_needgas"
                 android:layout_toRightOf="@+id/image_needgas_3"
+                android:src="@drawable/num_l_0" />     
+            <ImageView
+                android:id="@+id/image_needgas_parsent"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image_needgas"
+                android:layout_toRightOf="@+id/image_needgas_4"
                 android:src="@drawable/report_parsent" />
                         
 

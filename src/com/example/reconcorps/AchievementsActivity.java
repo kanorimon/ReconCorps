@@ -94,26 +94,26 @@ public class AchievementsActivity extends Activity{
         }
         
         //累計距離
-        int dist = (int)Float.parseFloat(pref.getString(PREF_DIST, "0")) * 1000;
-        if(dist < 10){
+        int dist = (int)Float.parseFloat(pref.getString(PREF_DIST, "0"));
+        if(dist < 10000){
             adapter.add(new Employee("???", "10km以上移動した"));
         }else{
             adapter.add(new Employee("新兵", "10km以上移動した"));
         }
         
-        if(dist < 100){
+        if(dist < 100000){
             adapter.add(new Employee("???", "100km以上移動した"));
         }else{
             adapter.add(new Employee("若手兵", "100km以上移動した"));
         }
 
-        if(dist < 1000){
+        if(dist < 1000000){
             adapter.add(new Employee("???", "1000km以上移動した"));
         }else{
             adapter.add(new Employee("中堅兵", "1000km以上移動した"));
         }
 
-        if(dist < 10000){
+        if(dist < 10000000){
             adapter.add(new Employee("???", "10000km以上移動した"));
         }else{
             adapter.add(new Employee("ベテラン兵", "10000km以上移動した"));

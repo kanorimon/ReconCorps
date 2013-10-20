@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
     	setNowDist(Float.parseFloat(pref.getString(PREF_DIST, "0")));
     	
     	//écÇËãóó£
-    	setUpDist(Float.parseFloat(pref.getString(PREF_UP_DIST, "1000")));
+    	setUpDist(Float.parseFloat(pref.getString(PREF_UP_DIST, "10000")));
 
     	Log.v(getString(R.string.log),"MainActivityÅ@setView() end");
 
@@ -113,10 +113,10 @@ public class MainActivity extends Activity {
     
     void setNowDist(float dist){
 
-    	setNumDrawable((ImageView)findViewById( R.id.image_level_0),(int)(dist / 10000000f),true);
-    	setNumDrawable((ImageView)findViewById( R.id.image_level_1),(int)((dist % 10000000f) / 1000000f),true);
-    	setNumDrawable((ImageView)findViewById( R.id.image_level_2),(int)((dist % 1000000f) / 100000f),true);
-    	setNumDrawable((ImageView)findViewById( R.id.image_level_3),(int)((dist % 100000f) / 10000f),true);
+    	boolean istop = setNumDrawable((ImageView)findViewById( R.id.image_level_0),(int)(dist / 10000000f),true);
+    	istop = setNumDrawable((ImageView)findViewById( R.id.image_level_1),(int)((dist % 10000000f) / 1000000f),istop);
+    	istop = setNumDrawable((ImageView)findViewById( R.id.image_level_2),(int)((dist % 1000000f) / 100000f),istop);
+    	setNumDrawable((ImageView)findViewById( R.id.image_level_3),(int)((dist % 100000f) / 10000f),istop);
     	setNumDrawable((ImageView)findViewById( R.id.image_level_4),(int)((dist % 10000f) / 1000f),false);
     	setNumDrawable((ImageView)findViewById( R.id.image_level_5),(int)((dist % 1000f) / 100f),false);
     	setNumDrawable((ImageView)findViewById( R.id.image_level_6),(int)((dist % 100f) / 10f),false);
@@ -125,10 +125,10 @@ public class MainActivity extends Activity {
     
     void setUpDist(float dist){
 
-    	setNumDrawable((ImageView)findViewById( R.id.image_ruikei_0),(int)(dist / 10000000f),true);
-    	setNumDrawable((ImageView)findViewById( R.id.image_ruikei_1),(int)((dist % 10000000f) / 1000000f),true);
-    	setNumDrawable((ImageView)findViewById( R.id.image_ruikei_2),(int)((dist % 1000000f) / 100000f),true);
-    	setNumDrawable((ImageView)findViewById( R.id.image_ruikei_3),(int)((dist % 100000f) / 10000f),true);
+    	boolean istop = setNumDrawable((ImageView)findViewById( R.id.image_ruikei_0),(int)(dist / 10000000f),true);
+    	istop = setNumDrawable((ImageView)findViewById( R.id.image_ruikei_1),(int)((dist % 10000000f) / 1000000f),istop);
+    	istop = setNumDrawable((ImageView)findViewById( R.id.image_ruikei_2),(int)((dist % 1000000f) / 100000f),istop);
+    	setNumDrawable((ImageView)findViewById( R.id.image_ruikei_3),(int)((dist % 100000f) / 10000f),istop);
     	setNumDrawable((ImageView)findViewById( R.id.image_ruikei_4),(int)((dist % 10000f) / 1000f),false);
     	setNumDrawable((ImageView)findViewById( R.id.image_ruikei_5),(int)((dist % 1000f) / 100f),false);
     	setNumDrawable((ImageView)findViewById( R.id.image_ruikei_6),(int)((dist % 100f) / 10f),false);
@@ -136,13 +136,17 @@ public class MainActivity extends Activity {
     }
     
     
-    void setNumDrawable(ImageView imv, int num, boolean istop){
+    boolean setNumDrawable(ImageView imv, int num, boolean istop){
 
+    	boolean result = false;
     	if(istop && num==0){
-    		imv.setVisibility(View.GONE);  		
+    		imv.setVisibility(View.GONE);
+    		result = true;
     	}else{
     		imv.setImageBitmap(BitmapFactory.decodeResource(getResources(), getuNumDrawable(num))); 
     	}
+    	
+    	return result;
 
     	
     }

@@ -77,6 +77,15 @@ public class HistoryActivity extends Activity{
         //最終報告地点
         adapter.add(new Employee("【最終報告緯度】", pref.getString(PREF_LAT, "未報告")));
         adapter.add(new Employee("【最終報告経度】", pref.getString(PREF_LONG, "未報告")));
+        
+        //ガス残量
+        int used_gas = Integer.parseInt(pref.getString(PREF_USED_GAS, "0"));
+		int gas = (int)(Float.parseFloat(pref.getString(PREF_DIST, "0")) / 10f);
+		gas = gas - used_gas;
+		if(gas > 100){
+			gas = 100;
+		}
+        adapter.add(new Employee("【ガス残量（10m移動ごとに1%補充）】", String.valueOf(gas) + "%"));
 
         //討伐数
         adapter.add(new Employee("【3m級巨人　討伐数】", pref.getString(PREF_TITAN_3, "0")));
