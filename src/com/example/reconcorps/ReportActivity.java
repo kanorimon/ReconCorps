@@ -1,5 +1,9 @@
 package com.example.reconcorps;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +16,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,9 +33,11 @@ public class ReportActivity extends Activity{
     static final String PREF_LONG = "pref_long";
     static final String PREF_DIST = "pref_dist";
     static final String PREF_UP_DIST = "pref_up_dist";
+    static final String PREF_DATE = "pref_date";
     static final String PREF_COUNT = "pref_count";
     static final String PREF_LEVEL = "pref_level";
-    static final String PREF_USED_GAS = "pref_used_gas";
+    static final String PREF_GAS_DIST = "pref_gas_dist";
+    static final String PREF_HAVE_GAS = "pref_have_gas";
     static final String PREF_REPORT = "pref_report";
     static final String PREF_TITAN_3 = "pref_titan_3";
     static final String PREF_TITAN_5 = "pref_titan_5";
@@ -67,9 +74,8 @@ public class ReportActivity extends Activity{
     AlphaAnimation animation_alpha;
     
     //ガス量
-    int gas;
 	int need_gas;
-	int used_gas;
+	int have_gas;
 	
     //レベル
     int level;
@@ -188,10 +194,10 @@ public class ReportActivity extends Activity{
         			prefEditor.putString(PREF_TITAN_3, String.valueOf(titan_3 + 1));
             	}
             	
-    			prefEditor.putString(PREF_USED_GAS, String.valueOf(used_gas + need_gas));
+    			prefEditor.putString(PREF_HAVE_GAS, String.valueOf(have_gas - need_gas));
     			prefEditor.commit();
                 ReportActivity.this.finish();
-                startActivity(new Intent( getApplicationContext(), MainActivity.class ));
+                startActivity(new Intent( getApplicationContext(), ResultActivity.class ));
                 overridePendingTransition(0, 0);
 
                 break;
@@ -288,30 +294,161 @@ public class ReportActivity extends Activity{
 			prefEditor.commit();
 			
 			//レベル
-			float keisu = 5000f;
 	    	level = 1;
-	    	if(new_dist > keisu){
-	   		    level = (int)(new_dist / keisu);
+	    	float exp[] = {
+	    			0f,
+	    			10000f,
+	    			30000f,
+	    			60000f,
+	    			100000f,
+	    			150000f,
+	    			210000f,
+	    			280000f,
+	    			360000f,
+	    			450000f,
+	    			550000f,
+	    			660000f,
+	    			780000f,
+	    			910000f,
+	    			1050000f,
+	    			1200000f,
+	    			1360000f,
+	    			1530000f,
+	    			1710000f,
+	    			1900000f,
+	    			2100000f,
+	    			2310000f,
+	    			2530000f,
+	    			2760000f,
+	    			3000000f,
+	    			3250000f,
+	    			3510000f,
+	    			3780000f,
+	    			4060000f,
+	    			4350000f,
+	    			4650000f,
+	    			4960000f,
+	    			5280000f,
+	    			5610000f,
+	    			5950000f,
+	    			6300000f,
+	    			6660000f,
+	    			7030000f,
+	    			7410000f,
+	    			7800000f,
+	    			8200000f,
+	    			8610000f,
+	    			9030000f,
+	    			9460000f,
+	    			9900000f,
+	    			10350000f,
+	    			10810000f,
+	    			11280000f,
+	    			11760000f,
+	    			12250000f,
+	    			12750000f,
+	    			13260000f,
+	    			13780000f,
+	    			14310000f,
+	    			14850000f,
+	    			15400000f,
+	    			15960000f,
+	    			16530000f,
+	    			17110000f,
+	    			17700000f,
+	    			18300000f,
+	    			18910000f,
+	    			19530000f,
+	    			20160000f,
+	    			20800000f,
+	    			21450000f,
+	    			22110000f,
+	    			22780000f,
+	    			23460000f,
+	    			24150000f,
+	    			24850000f,
+	    			25560000f,
+	    			26280000f,
+	    			27010000f,
+	    			27750000f,
+	    			28500000f,
+	    			29260000f,
+	    			30030000f,
+	    			30810000f,
+	    			31600000f,
+	    			32400000f,
+	    			33210000f,
+	    			34030000f,
+	    			34860000f,
+	    			35700000f,
+	    			36550000f,
+	    			37410000f,
+	    			38280000f,
+	    			39160000f,
+	    			40050000f,
+	    			40950000f,
+	    			41860000f,
+	    			42780000f,
+	    			43710000f,
+	    			44650000f,
+	    			45600000f,
+	    			46560000f,
+	    			47530000f,
+	    			48510000f,
+	    			49500000f,
+	    			50500000
+	    			};
+	    	
+	    	while(true){
+		    	if(level > 99){
+		    		break;
+		    	}
+		    	if(new_dist < exp[level] ){
+		   		    break;
+		    	}
+		    	level++;
 	    	}
+	    	
         	prefEditor = pref.edit();
 			prefEditor.putString(PREF_LEVEL, String.valueOf(level));
 			prefEditor.commit();
 			
 			//残り距離
-        	prefEditor = pref.edit();
-			prefEditor.putString(PREF_UP_DIST, String.valueOf(((level+1)*keisu) - (new_dist)));
-			prefEditor.commit();
+	    	if(level > 99){
+				prefEditor = pref.edit();
+				prefEditor.putString(PREF_UP_DIST, String.valueOf(99999));
+				prefEditor.commit();
+	    	}else{
+	    		prefEditor = pref.edit();
+	    		prefEditor.putString(PREF_UP_DIST, String.valueOf(exp[level] - new_dist));
+	    		prefEditor.commit();
+	    	}
 			
 			//ガス量
-			used_gas =Integer.parseInt(pref.getString(PREF_USED_GAS, "0"));
-			gas = (int)(new_dist / 10f);
-			gas = gas - used_gas;
-			if(gas > 100){
-				gas = 100;
+			float gas_dist =Float.parseFloat(pref.getString(PREF_GAS_DIST, "0"));
+			have_gas =Integer.parseInt(pref.getString(PREF_HAVE_GAS, "0"));
+			if(have_gas < 100){
+				int gas = (int)((new_dist-gas_dist) / 10f);
+				if(gas > 0){
+					have_gas = have_gas + gas;
+		        	prefEditor = pref.edit();
+					prefEditor.putString(PREF_GAS_DIST, String.valueOf(new_dist));
+					prefEditor.commit();
+				}
 			}
+			if(have_gas > 100){
+				have_gas = 100;
+			}
+        	prefEditor = pref.edit();
+			prefEditor.putString(PREF_HAVE_GAS, String.valueOf(have_gas));
+			prefEditor.commit();
+			
+			//報告時間
+        	prefEditor = pref.edit();
+			prefEditor.putString(PREF_DATE, (String)DateFormat.format("yyyy/MM/dd kk:mm:ss", Calendar.getInstance()));
+			prefEditor.commit();
 
-			Log.v(getString(R.string.log),"ReportActivity　onLocationChanged() gas  " + gas);
-    		Log.v(getString(R.string.log),"ReportActivity　onLocationChanged() new_dist * 10.0f  " + (new_dist * 10.0f));
+			Log.v(getString(R.string.log),"ReportActivity　onLocationChanged() have_gas  " + have_gas);
 			
 			showResult();
 
@@ -490,7 +627,7 @@ public class ReportActivity extends Activity{
 
 
     	//ガス量
-		if(need_gas > gas ){
+		if(need_gas > have_gas ){
 
 			Button button_battle = (Button)findViewById( R.id.button_battle);
 			button_battle.setBackground(getResources().getDrawable(R.drawable.report_battle_ng));
@@ -503,9 +640,9 @@ public class ReportActivity extends Activity{
 	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_3),(need_gas % 100) / 10,istop);
 	    	setNumDrawable((ImageView)findViewById( R.id.image_needgas_4),need_gas % 10,false);
 	    	
-	    	istop = setNumDrawable((ImageView)findViewById( R.id.image_usegas_1),gas / 100,true);
-	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_2),(gas % 100) / 10,istop);
-	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_3),gas % 10,false);
+	    	istop = setNumDrawable((ImageView)findViewById( R.id.image_usegas_1),have_gas / 100,true);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_2),(have_gas % 100) / 10,istop);
+	    	setNumDrawable((ImageView)findViewById( R.id.image_usegas_3),have_gas % 10,false);
 		
 		
     	//アニメーション終了

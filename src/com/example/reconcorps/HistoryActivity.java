@@ -29,8 +29,9 @@ public class HistoryActivity extends Activity{
     static final String PREF_DIST = "pref_dist";
     static final String PREF_UP_DIST = "pref_up_dist";
     static final String PREF_COUNT = "pref_count";
+    static final String PREF_DATE = "pref_date";
     static final String PREF_LEVEL = "pref_level";
-    static final String PREF_USED_GAS = "pref_used_gas";
+    static final String PREF_HAVE_GAS = "pref_have_gas";
     static final String PREF_REPORT = "pref_report";
     static final String PREF_TITAN_3 = "pref_titan_3";
     static final String PREF_TITAN_5 = "pref_titan_5";
@@ -72,36 +73,33 @@ public class HistoryActivity extends Activity{
         listView.setAdapter(adapter);
         
         //•ñ‰ñ”
-        adapter.add(new Employee("y•ñ‰ñ”z", pref.getString(PREF_COUNT, "0")));
+        adapter.add(new Employee("y•ñ‰ñ”z", pref.getString(PREF_COUNT, "0") + "‰ñ"));
+
+        //ÅI•ñŠÔ
+        adapter.add(new Employee("yÅI•ñ“úz", pref.getString(PREF_DATE, "–¢•ñ")));
 
         //ÅI•ñ’n“_
         adapter.add(new Employee("yÅI•ñˆÜ“xz", pref.getString(PREF_LAT, "–¢•ñ")));
         adapter.add(new Employee("yÅI•ñŒo“xz", pref.getString(PREF_LONG, "–¢•ñ")));
         
         //ƒKƒXc—Ê
-        int used_gas = Integer.parseInt(pref.getString(PREF_USED_GAS, "0"));
-		int gas = (int)(Float.parseFloat(pref.getString(PREF_DIST, "0")) / 10f);
-		gas = gas - used_gas;
-		if(gas > 100){
-			gas = 100;
-		}
-        adapter.add(new Employee("yƒKƒXc—Êi10mˆÚ“®‚²‚Æ‚É1%•â[jz", String.valueOf(gas) + "%"));
+        adapter.add(new Employee("yƒKƒXc—Êi10mˆÚ“®‚²‚Æ‚É1%•â[jz", pref.getString(PREF_HAVE_GAS, "0") + "%"));
 
         //“¢”°”
-        adapter.add(new Employee("y3m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_3, "0")));
-        adapter.add(new Employee("y5m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_5, "0")));
-        adapter.add(new Employee("y7m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_7, "0")));
-        adapter.add(new Employee("y9m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_9, "0")));
-        adapter.add(new Employee("y11m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_11, "0")));
-        adapter.add(new Employee("y13m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_13, "0")));
-        adapter.add(new Employee("y15m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_15, "0")));
-        adapter.add(new Employee("y3m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_3, "0")));
-        adapter.add(new Employee("y5m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_5, "0")));
-        adapter.add(new Employee("y7m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_7, "0")));
-        adapter.add(new Employee("y9m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_9, "0")));
-        adapter.add(new Employee("y11m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_11, "0")));
-        adapter.add(new Employee("y13m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_13, "0")));
-        adapter.add(new Employee("y15m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_15, "0")));
+        adapter.add(new Employee("y3m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_3, "0") + "‘Ì"));
+        adapter.add(new Employee("y5m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_5, "0") + "‘Ì"));
+        adapter.add(new Employee("y7m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_7, "0") + "‘Ì"));
+        adapter.add(new Employee("y9m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_9, "0") + "‘Ì"));
+        adapter.add(new Employee("y11m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_11, "0") + "‘Ì"));
+        adapter.add(new Employee("y13m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_13, "0") + "‘Ì"));
+        adapter.add(new Employee("y15m‹‰‹l@“¢”°”z", pref.getString(PREF_TITAN_15, "0") + "‘Ì"));
+        adapter.add(new Employee("y3m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_3, "0") + "‘Ì"));
+        adapter.add(new Employee("y5m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_5, "0") + "‘Ì"));
+        adapter.add(new Employee("y7m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_7, "0") + "‘Ì"));
+        adapter.add(new Employee("y9m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_9, "0") + "‘Ì"));
+        adapter.add(new Employee("y11m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_11, "0") + "‘Ì"));
+        adapter.add(new Employee("y13m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_13, "0") + "‘Ì"));
+        adapter.add(new Employee("y15m‹‰Šïsí@“¢”°”z", pref.getString(PREF_KIKO_15, "0") + "‘Ì"));
 
         
         
