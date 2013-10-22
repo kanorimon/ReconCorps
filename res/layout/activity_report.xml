@@ -2,331 +2,307 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:layout_height="fill_parent"
     tools:context=".MainActivity" >
-    
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
-        android:adjustViewBounds="true" 
-		android:src="@drawable/back_levi"
-		android:scaleType="fitXY" />
+        android:adjustViewBounds="true"
+        android:src="@drawable/back_levi"
+        android:scaleType="fitXY" />
 
-    
-    
-        <LinearLayout   
-    android:id="@+id/LinearLayout"  
-    android:orientation="vertical"  
-    android:layout_height="fill_parent"  
-    android:layout_width="fill_parent">
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent">
 
-                
-                <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical" >
-        
-       <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/image_report_now"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/report_now" />
+                android:layout_centerInParent="true"
+                android:orientation="vertical" >
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/image_report_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/report_now" />
 
             </RelativeLayout>
 
-     <RelativeLayout
-                android:id="@+id/relative_return"
+        </RelativeLayout>
 
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical" >
 
-                          <RelativeLayout
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/relative_return"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-                                 android:orientation="vertical" >
-
-
-    <Button
-        android:id="@+id/button_return"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-                                  android:background="@drawable/img_return" />
-
-
-      
-                                    
-             
-               </RelativeLayout>
-               </RelativeLayout>
-                
-                                
-                <RelativeLayout
-                android:id="@+id/relative_titan"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical" >
-        
-      <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
             android:orientation="vertical" >
-           
-            <ImageView
-                android:id="@+id/image_titan_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/num_l_1" />
 
-            <ImageView
-                android:id="@+id/image_titan_2"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_titan_1"
-                android:layout_toRightOf="@+id/image_titan_1"
-                android:src="@drawable/num_l_5" />
+                android:layout_centerInParent="true"
+                android:orientation="vertical" >
 
-                        <ImageView
-                android:id="@+id/image_titan_val"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_titan_1"
-                android:layout_toRightOf="@+id/image_titan_2"
-                android:src="@drawable/report_titan" />
-                        
- 
+                <Button
+                    android:id="@+id/button_return"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/img_return" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
+
+        <RelativeLayout
+            android:id="@+id/relative_titan"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/image_titan_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/num_l_1" />
+
+                <ImageView
+                    android:id="@+id/image_titan_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/image_titan_1"
+                    android:layout_toRightOf="@+id/image_titan_1"
+                    android:src="@drawable/num_l_5" />
+
+                <ImageView
+                    android:id="@+id/image_titan_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/image_titan_1"
+                    android:layout_toRightOf="@+id/image_titan_2"
+                    android:src="@drawable/report_titan" />
+
             </RelativeLayout>
-        
-   
-            
-     <LinearLayout
-                android:id="@+id/relative_sogu"
-  android:orientation="horizontal"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content"
-              android:layout_marginTop="30dp"
-  >
-     
-               <RelativeLayout
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/relative_sogu"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp" >
+
+            <RelativeLayout
                 android:id="@+id/relative_battle"
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-     android:layout_width="0dip"
-    android:layout_weight="1"
-            android:layout_height="wrap_content"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
 
-          android:orientation="vertical" >
-        
-      <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_centerInParent="true"
-             android:orientation="vertical" >
-           
-     <LinearLayout
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="wrap_content"
-             android:layout_centerInParent="true"
-               >
-                               <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-  
-                                   <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical" >
-    <Button
-        android:id="@+id/button_battle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/report_battle"  />
-     
-    </RelativeLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" >
 
-                  </RelativeLayout>
-  
-                 <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-               android:layout_marginTop="10dp"
-        android:orientation="vertical" >
-  
-                                                                  
-          <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_centerInParent="true"
-             android:orientation="vertical" >
-             
-            <ImageView
-                android:id="@+id/image_needgas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/report_needgas" />
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/image_needgas_1"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_needgas"
-                android:layout_toRightOf="@+id/image_needgas"
-                android:src="@drawable/num_l_1" />
-            <ImageView
-                android:id="@+id/image_needgas_2"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_needgas"
-                android:layout_toRightOf="@+id/image_needgas_1"
-                android:src="@drawable/num_l_0" />
-            <ImageView
-                android:id="@+id/image_needgas_3"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_needgas"
-                android:layout_toRightOf="@+id/image_needgas_2"
-                android:src="@drawable/num_l_0" />     
-            <ImageView
-                android:id="@+id/image_needgas_4"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_needgas"
-                android:layout_toRightOf="@+id/image_needgas_3"
-                android:src="@drawable/num_l_0" />     
-            <ImageView
-                android:id="@+id/image_needgas_parsent"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_needgas"
-                android:layout_toRightOf="@+id/image_needgas_4"
-                android:src="@drawable/report_parsent" />
-                        
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:orientation="vertical" >
 
-            </RelativeLayout>
+                                <Button
+                                    android:id="@+id/button_battle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/report_battle" />
 
                             </RelativeLayout>
-          
+
+                        </RelativeLayout>
+
+
                         <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-        android:orientation="vertical" >
-                 
-               <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-              android:layout_centerInParent="true"
-              
-                         android:orientation="vertical" >
- 
-          
-               <ImageView
-                android:id="@+id/image_usegas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/report_usegas" />
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/image_usegas_1"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_usegas"
-                android:layout_toRightOf="@+id/image_usegas"
-                android:src="@drawable/num_l_1" />
-            <ImageView
-                android:id="@+id/image_usegas_2"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_usegas"
-                android:layout_toRightOf="@+id/image_usegas_1"
-                android:src="@drawable/num_l_0" />
-            <ImageView
-                android:id="@+id/image_usegas_3"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_usegas"
-                android:layout_toRightOf="@+id/image_usegas_2"
-                android:src="@drawable/num_l_0" />     
-            <ImageView
-                android:id="@+id/image_usegas_parsent"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/image_usegas"
-                android:layout_toRightOf="@+id/image_usegas_3"
-                android:src="@drawable/report_parsent" />
-                                            
-                             </RelativeLayout>
-            
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:orientation="vertical" >
 
-        </RelativeLayout>
+                                <ImageView
+                                    android:id="@+id/image_needgas"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/report_needgas" />
 
-          
- </LinearLayout>
+                                <ImageView
+                                    android:id="@+id/image_needgas_1"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_needgas"
+                                    android:layout_toRightOf="@+id/image_needgas"
+                                    android:src="@drawable/num_l_1" />
 
-        </RelativeLayout>
+                                <ImageView
+                                    android:id="@+id/image_needgas_2"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_needgas"
+                                    android:layout_toRightOf="@+id/image_needgas_1"
+                                    android:src="@drawable/num_l_0" />
+
+                                <ImageView
+                                    android:id="@+id/image_needgas_3"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_needgas"
+                                    android:layout_toRightOf="@+id/image_needgas_2"
+                                    android:src="@drawable/num_l_0" />     
+
+                                <ImageView
+                                    android:id="@+id/image_needgas_4"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_needgas"
+                                    android:layout_toRightOf="@+id/image_needgas_3"
+                                    android:src="@drawable/num_l_0" />     
+
+                                <ImageView
+                                    android:id="@+id/image_needgas_parsent"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_needgas"
+                                    android:layout_toRightOf="@+id/image_needgas_4"
+                                    android:src="@drawable/report_parsent" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical" >
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:orientation="vertical" >
+
+                                <ImageView
+                                    android:id="@+id/image_usegas"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/report_usegas" />
+
+                                <ImageView
+                                    android:id="@+id/image_usegas_1"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_usegas"
+                                    android:layout_toRightOf="@+id/image_usegas"
+                                    android:src="@drawable/num_l_1" />
+
+                                <ImageView
+                                    android:id="@+id/image_usegas_2"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_usegas"
+                                    android:layout_toRightOf="@+id/image_usegas_1"
+                                    android:src="@drawable/num_l_0" />
+
+                                <ImageView
+                                    android:id="@+id/image_usegas_3"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_usegas"
+                                    android:layout_toRightOf="@+id/image_usegas_2"
+                                    android:src="@drawable/num_l_0" />     
+
+                                <ImageView
+                                    android:id="@+id/image_usegas_parsent"
+                                    android:layout_width="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignBottom="@+id/image_usegas"
+                                    android:layout_toRightOf="@+id/image_usegas_3"
+                                    android:src="@drawable/report_parsent" />
+
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
 
             </RelativeLayout>
-             
-              
-     
-               
-               <RelativeLayout
-     android:layout_width="0dip"
-    android:layout_weight="1"
-            android:layout_height="wrap_content"
-                  android:orientation="vertical" >
-        
- 
-                          <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical" >
 
 
-    <Button
-        android:id="@+id/button_escape"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-                                  android:background="@drawable/report_escape" />
+            <RelativeLayout
+                android:layout_width="0dip"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical" >
 
-      
-      </RelativeLayout>
-                   
+                    <Button
+                        android:id="@+id/button_escape"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/report_escape" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
-                                
-               </LinearLayout>
-    
 
+        </LinearLayout>
 
-     
-         
-  </LinearLayout>
-    
+    </LinearLayout>
 
-
-
-    
 </RelativeLayout>

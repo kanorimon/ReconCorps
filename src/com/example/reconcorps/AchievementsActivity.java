@@ -69,7 +69,7 @@ public class AchievementsActivity extends Activity{
         
         
         //報告回数
-        adapter.add(new Employee("報告回数", "--------------------"));
+        adapter.add(new Employee("報告回数", ""));
 
         int kaisu = Integer.parseInt(pref.getString(PREF_COUNT, "0"));
         if(kaisu < 10){
@@ -98,7 +98,7 @@ public class AchievementsActivity extends Activity{
         
         //累計距離
         adapter.add(new Employee("", ""));
-        adapter.add(new Employee("移動距離", "--------------------"));
+        adapter.add(new Employee("移動距離", ""));
 
         int dist = (int)Float.parseFloat(pref.getString(PREF_DIST, "0"));
         if(dist < 10000){
@@ -146,7 +146,7 @@ public class AchievementsActivity extends Activity{
     	int kiko = kiko_3 + kiko_5 + kiko_7 + kiko_9 + kiko_11 + kiko_13 + kiko_15;
 
         adapter.add(new Employee("", ""));
-        adapter.add(new Employee("総討伐数", "--------------------"));
+        adapter.add(new Employee("総討伐数", ""));
 
     	if(titan+kiko < 10){
             adapter.add(new Employee("???", "巨人を10体討伐した"));
@@ -176,7 +176,7 @@ public class AchievementsActivity extends Activity{
 
     	//巨人討伐数
         adapter.add(new Employee("", ""));
-        adapter.add(new Employee("巨人討伐数", "--------------------"));
+        adapter.add(new Employee("巨人討伐数", ""));
 
     	if(titan_3 < 1){
             adapter.add(new Employee("???", "3m級巨人を1体討伐した"));
@@ -221,6 +221,8 @@ public class AchievementsActivity extends Activity{
         }
     	
     	int tobatu2 = 10;
+
+        adapter.add(new Employee("", ""));
 
     	if(titan_3 < tobatu2){
             adapter.add(new Employee("???", "3m級巨人を" + tobatu2 + "体討伐した"));
@@ -268,7 +270,7 @@ public class AchievementsActivity extends Activity{
 
     	//奇行種討伐数
         adapter.add(new Employee("", ""));
-        adapter.add(new Employee("奇行種討伐数", "--------------------"));
+        adapter.add(new Employee("奇行種討伐数", ""));
     	
     	if(kiko_3 < 1){
             adapter.add(new Employee("???", "3m級奇行種を1体討伐した"));
@@ -313,6 +315,8 @@ public class AchievementsActivity extends Activity{
         }
     	
     	int tobatu_kiko_2 = 10;
+
+        adapter.add(new Employee("", ""));
 
     	if(kiko_3 < tobatu_kiko_2){
             adapter.add(new Employee("???", "3m級奇行種を" + tobatu_kiko_2 + "体討伐した"));
